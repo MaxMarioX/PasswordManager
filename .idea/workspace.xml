@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f273f813-aa6d-4721-978c-0789fd7c60b3" name="Changes" comment="Done.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/pm/dao/SiteDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/pm/entity/Site.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/pm/dao/LogDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/pm/entity/Log.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/entity/Site.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/entity/Site.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,7 @@
       <updated>1675112718891</updated>
       <workItem from="1675112720016" duration="5080000" />
       <workItem from="1675172887771" duration="2061000" />
-      <workItem from="1675197776815" duration="3952000" />
+      <workItem from="1675197776815" duration="5144000" />
     </task>
     <task id="LOCAL-00001" summary="Done.">
       <created>1675117502468</created>
@@ -81,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675117764130</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Done.">
+      <created>1675201836436</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675201836436</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

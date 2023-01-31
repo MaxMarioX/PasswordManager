@@ -10,7 +10,7 @@ import java.util.Date;
 public class Site {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long site_id;
 
     @Column(nullable = false, length = 50)
