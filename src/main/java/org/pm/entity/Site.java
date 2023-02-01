@@ -3,7 +3,9 @@ package org.pm.entity;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="sites")
@@ -99,6 +101,4 @@ public class Site {
     {
         return account;
     }
-
-
 }

@@ -2,6 +2,9 @@ package org.pm.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "accounts")
 public class Account {
@@ -33,6 +36,15 @@ public class Account {
 
     @Column(nullable = false)
     private boolean account_strong_auth;
+
+    @OneToMany(mappedBy = "accounts")
+    private List<Site> siteList;
+
+    @OneToMany(mappedBy = "accounts")
+    private List<Log> logList;
+
+    @ManyToMany(mappedBy = "accounts")
+    private List<Role> roleList;
 
     public void setAccount_id(Long account_id)
     {
@@ -112,5 +124,35 @@ public class Account {
     public boolean getAccount_strong_auth()
     {
         return account_strong_auth;
+    }
+
+    public void setSiteList(List<Site> siteList)
+    {
+        this.siteList = siteList;
+    }
+
+    public List<Site> getSiteList()
+    {
+        return siteList;
+    }
+
+    public void setLogList(List<Log> logList)
+    {
+        this.logList = logList;
+    }
+
+    public List<Log> getLogList()
+    {
+        return logList;
+    }
+
+    public void setRoleList(List<Role> roleList)
+    {
+        this.roleList = roleList;
+    }
+
+    public List<Role> getRoleList()
+    {
+        return roleList;
     }
 }
