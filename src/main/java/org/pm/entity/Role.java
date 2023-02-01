@@ -27,7 +27,7 @@ public class Role {
     @JoinTable(name = "accounts_roles",
             joinColumns = @JoinColumn(name = "account_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Account> roleList = new ArrayList<>();
+    private List<Account> accounts = new ArrayList<>();
 
     public void setRole_id(Long role_id) {
         this.role_id = role_id;
@@ -63,7 +63,7 @@ public class Role {
         return role_description;
     }
 
-    public void setRoleList(List<Account> roleList) { this.roleList = roleList; }
+    public void setAccounts(List<Account> accounts) { this.accounts = accounts; }
 
-    public List<Account> getRoleList() { return roleList; }
+    public List<Account> getAccounts() { return accounts; }
 }

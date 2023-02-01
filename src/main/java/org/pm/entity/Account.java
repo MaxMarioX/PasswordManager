@@ -37,10 +37,10 @@ public class Account {
     @Column(nullable = false)
     private boolean account_strong_auth;
 
-    @OneToMany(mappedBy = "accounts")
+    @OneToMany(mappedBy = "account")
     private List<Site> siteList;
 
-    @OneToMany(mappedBy = "accounts")
+    @OneToMany(mappedBy = "account")
     private List<Log> logList;
 
     @ManyToMany(mappedBy = "accounts")
@@ -145,7 +145,6 @@ public class Account {
     {
         return logList;
     }
-
     public void setRoleList(List<Role> roleList)
     {
         this.roleList = roleList;

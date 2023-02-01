@@ -17,7 +17,7 @@ public class Log {
     private String log_date;
 
     @ManyToOne
-    @JoinColumn(name = "account_id")
+    @JoinColumn(name="account_id")
     private Account account;
 
     public void setLog_id(Long log_id) {
