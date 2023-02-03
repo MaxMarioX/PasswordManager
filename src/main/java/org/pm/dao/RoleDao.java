@@ -1,6 +1,7 @@
 package org.pm.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.pm.entity.Role;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,7 @@ import java.util.List;
 @Transactional
 public class RoleDao {
 
+    @PersistenceContext
     EntityManager em;
 
     public void save(Role role)

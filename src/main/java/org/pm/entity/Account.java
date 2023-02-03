@@ -112,7 +112,7 @@ public class Account {
         this.account_password_blk = account_password_blk;
     }
 
-    public boolean setAccount_password_blk()
+    public boolean getAccount_password_blk()
     {
         return account_password_blk;
     }

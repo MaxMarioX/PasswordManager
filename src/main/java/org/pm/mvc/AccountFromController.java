@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/test/account")
 public class AccountFromController {
 
     private final AccountDao accountDao;
@@ -20,28 +20,35 @@ public class AccountFromController {
         this.accountDao = accountDao;
     }
 
-    @GetMapping("/ok")
+    @GetMapping("/ok-account")
     public String OkStatus()
     {
         return "ok";
     }
 
+    @GetMapping("/list-accounts")
+    public String accountViewAll(Model model)
+    {
+        model.addAttribute("accounts",accountDao.findAll());
+        return "list-accounts";
+    }
+
     @GetMapping("/add-account")
-    public String AccountAdd(Model model)
+    public String accountAdd(Model model)
     {
         model.addAttribute("account", new Account());
         return "add-account";
     }
 
-    @PostMapping(value = "/add-account")
-    public String AccountAddNow(Account account)
+    @PostMapping("/add-account")
+    public String accountAddNow(Account account)
     {
         account.setAccount_password_blk(false);
         account.setAccount_strong_auth(false);
 
         accountDao.save(account);
 
-        return "redirect:/test/ok";
+        return "redirect:/test/account/ok-account";
 
     }
 }
