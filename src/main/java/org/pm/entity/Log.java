@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Log {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long log_id;
 
     @Column(nullable = false, length = 255)

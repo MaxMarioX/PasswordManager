@@ -12,7 +12,7 @@ import java.util.List;
 public class Site {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long site_id;
 
     @Column(nullable = false, length = 50)
