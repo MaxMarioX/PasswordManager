@@ -28,7 +28,7 @@ public class LogFromController {
         this.accountDao = accountDao;
     }
 
-    @GetMapping("/addLog")
+    @GetMapping("/add")
     public String logAdd(Log log, Account account, @RequestParam String message)
     {
         account = accountDao.findById(2L);
@@ -42,7 +42,7 @@ public class LogFromController {
         return "ok";
     }
 
-    @GetMapping("/listAllLogs")
+    @GetMapping("/listAll")
     public String logListAll(Model model)
     {
         model.addAttribute("logs",logDao.findAll());

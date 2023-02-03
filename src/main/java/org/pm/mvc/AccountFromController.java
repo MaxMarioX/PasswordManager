@@ -20,27 +20,21 @@ public class AccountFromController {
         this.accountDao = accountDao;
     }
 
-    @GetMapping("/ok-account")
-    public String OkStatus()
-    {
-        return "ok";
-    }
-
-    @GetMapping("/list-accounts")
+    @GetMapping("/listAll")
     public String accountViewAll(Model model)
     {
         model.addAttribute("accounts",accountDao.findAll());
         return "list-accounts";
     }
 
-    @GetMapping("/add-account")
+    @GetMapping("/add")
     public String accountAdd(Model model)
     {
         model.addAttribute("account", new Account());
         return "add-account";
     }
 
-    @PostMapping("/add-account")
+    @PostMapping("/add")
     public String accountAddNow(Account account)
     {
         account.setAccount_password_blk(false);
@@ -48,7 +42,6 @@ public class AccountFromController {
 
         accountDao.save(account);
 
-        return "redirect:/test/account/ok-account";
-
+        return "ok";
     }
 }

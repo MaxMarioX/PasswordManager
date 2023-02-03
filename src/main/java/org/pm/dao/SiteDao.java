@@ -36,7 +36,6 @@ public class SiteDao {
                 .createQuery("select x from Site x where x.account in :account")
                 .setParameter("account", account)
                 .getResultList();
-
     }
 
 }

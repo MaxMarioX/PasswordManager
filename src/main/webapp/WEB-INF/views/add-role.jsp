@@ -8,7 +8,7 @@
 <body>
 <p>Add new role</p>
 <%--@elvariable id="role" type="org.pm.entity.Role"--%>
-<form:form method="post" action="/test/role/add-role" modelAttribute="role">
+<form:form method="post" action="/test/role/add" modelAttribute="role">
     <div>
         Role name: <form:input path="role_name"/><form:errors path="role_name"/>
     </div>

@@ -19,24 +19,18 @@ public class RoleFromController {
         this.roleDao = roleDao;
     }
 
-    @GetMapping("/ok-role")
-    public String OkStatus()
-    {
-        return "ok";
-    }
-
-    @GetMapping("/add-role")
+    @GetMapping("/add")
     public String RoleAdd(Model model)
     {
         model.addAttribute("role", new Role());
         return "add-role";
     }
 
-    @PostMapping("/add-role")
+    @PostMapping("/add")
     public String RoleAddNow(Role role)
     {
         role.setRole_active(true);
         roleDao.save(role);
-        return "redirect:/test/role/ok-role";
+        return "ok";
     }
 }
