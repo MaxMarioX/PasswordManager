@@ -49,7 +49,7 @@ public class AuthenticationController {
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("LoggedUser",accountDao.findByNumber(Long.parseLong(accountID)));
 
-                return "redirect:/dashboard";
+                return "redirect:/dashboard/main";
 
             } else {
                 request.setAttribute("Message", "Podane ID lub hasło jest nieprawidłowe!");
