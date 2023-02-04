@@ -1,6 +1,5 @@
 package org.pm.mvc;
 
-import jakarta.transaction.Transactional;
 import org.hibernate.annotations.Parameter;
 import org.pm.dao.AccountDao;
 import org.pm.dao.LogDao;

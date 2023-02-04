@@ -1,9 +1,8 @@
 package org.pm.entity;
 
-import jakarta.persistence.*;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity

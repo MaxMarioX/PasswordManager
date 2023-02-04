@@ -1,6 +1,7 @@
 package org.pm.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="logs")

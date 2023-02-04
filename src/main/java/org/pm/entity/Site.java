@@ -1,6 +1,7 @@
 package org.pm.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+import java.util.List;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;

@@ -1,8 +1,6 @@
 package org.pm.entity;
 
-import jakarta.persistence.*;
-
-import javax.annotation.processing.Generated;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
