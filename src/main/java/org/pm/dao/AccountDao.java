@@ -36,7 +36,7 @@ public class AccountDao {
 
     public Account findByNumber(Long number)
     {
-        return (Account) em.createQuery("SELECT x from Account x where x.account_number = :numer")
+        return (Account) em.createQuery("SELECT x from Account x where x.account_number = :number")
                 .setParameter("number",number)
                 .getSingleResult();
     }
