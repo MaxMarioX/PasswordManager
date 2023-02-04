@@ -1,6 +1,7 @@
 package org.pm.entity;
 
 import jakarta.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long account_id;
 
     @Column(nullable = false, unique = true)
@@ -45,6 +46,11 @@ public class Account {
 
     @ManyToMany(mappedBy = "accounts")
     private List<Role> roleList;
+
+    public String hashPassword(String password)
+    {
+        return BCrypt.hashpw(password,BCrypt.gensalt());
+    }
 
     public void setAccount_id(Long account_id)
     {
@@ -101,7 +107,7 @@ public class Account {
     }
 
     public void setAccount_password(String account_password) {
-        this.account_password = account_password;
+        this.account_password = hashPassword(account_password);
     }
 
     public String getAccount_password() {

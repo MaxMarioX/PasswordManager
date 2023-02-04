@@ -1,18 +1,17 @@
 package org.pm.entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import org.jasypt.encryption.StringEncryptor;
+import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
+import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
+import org.pm.Main;
 
 @Entity
 @Table(name="sites")
 public class Site {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long site_id;
 
     @Column(nullable = false, length = 50)
@@ -74,12 +73,12 @@ public class Site {
 
     public void setSite_password(String site_password)
     {
-        this.site_password = site_password;
+        this.site_password = getPasswordEncryptor().encrypt(site_password);
     }
 
     public String getSite_password()
     {
-        return site_password;
+        return getPasswordEncryptor().decrypt(site_password);
     }
 
     public void setSite_date(String site_date)
@@ -100,5 +99,24 @@ public class Site {
     public Account getAccount()
     {
         return account;
+    }
+
+    //https://www.codejava.net/frameworks/spring-boot/spring-boot-password-encryption
+    public StringEncryptor getPasswordEncryptor() {
+        PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+        SimpleStringPBEConfig config = new SimpleStringPBEConfig();
+
+        config.setPassword("1qaz2wsx"); // encryptor's private key
+
+        config.setAlgorithm("PBEWithMD5AndDES");
+        config.setKeyObtentionIterations("1000");
+        config.setPoolSize("1");
+        config.setProviderName("SunJCE");
+        config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
+        config.setStringOutputType("base64");
+
+        encryptor.setConfig(config);
+
+        return encryptor;
     }
 }
