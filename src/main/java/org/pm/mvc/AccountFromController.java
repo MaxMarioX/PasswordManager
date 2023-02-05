@@ -84,8 +84,46 @@ public class AccountFromController {
         accountDao.update(account);
 
         model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
-        model.addAttribute("Message","Data has been updated!");
+        model.addAttribute("Message","Profile has been updated!");
 
         return "edit-user";
+    }
+    @GetMapping("/editpassword")
+    public String accountEditPassword(HttpServletRequest httpServletRequest, Model model)
+    {
+        this.httpSession = httpServletRequest.getSession();
+
+        model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
+
+        return "edit-password";
+    }
+
+    @PostMapping("/editpassword")
+    public String accountEditPasswordNow(HttpServletRequest httpServletRequest, Model model)
+    {
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+
+        String password = httpServletRequest.getParameter("accountPassword");
+        String password_r = httpServletRequest.getParameter("accountPasswordR");
+
+        if(!(password == null) && !(password_r == null))
+        {
+            if(password.equals(password_r))
+            {
+                account.setAccount_password(password);
+                httpSession.setAttribute("LoggedUser",account);
+                model.addAttribute("Message","Password has been changed!");
+
+                accountDao.update(account);
+            } else {
+                model.addAttribute("Message","Error: Passwords are different!");
+            }
+        } else {
+            model.addAttribute("Message","Error: Password field can't be empty!");
+        }
+
+        model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
+
+        return "edit-password";
     }
 }

@@ -9,7 +9,7 @@
     <meta name="description" content="PasswordManager">
     <meta name="author" content="Mariusz Plaskota">
 
-    <title>PasswordManager</title>
+    <title>Password Manager</title>
 
     <!-- Custom fonts for this template-->
     <link href="<c:url value="/theme/vendor/fontawesome-free/css/all.min.css"/>" rel="stylesheet" type="text/css">
@@ -125,7 +125,7 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="/account/editpassword">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Change password
                             </a>
