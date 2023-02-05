@@ -1,6 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -19,6 +20,9 @@
 
     <!-- Custom styles for this template-->
     <link href="<c:url value="/theme/css/sb-admin-2.min.css"/>" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="<c:url value="/theme/vendor/datatables/dataTables.bootstrap4.min.css"/>" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -29,6 +33,9 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <%@ include file="header.jsp"%>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -107,10 +114,6 @@
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -140,27 +143,41 @@
                             </a>
                         </div>
                     </li>
+
                 </ul>
+
             </nav>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+
                 <!-- Page Heading -->
                 <%@ include file="heading.jsp"%>
 
+                <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Event logs</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">List of logs</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
                                 <tr>
                                     <th>Lp</th>
                                     <th>Data</th>
                                     <th>Message</th>
                                 </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>Lp</th>
+                                    <th>Data</th>
+                                    <th>Message</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
                                 <%
                                     Integer counter = (Integer) application.getAttribute("hitCounter");
                                     counter = 0;
@@ -176,33 +193,20 @@
                                         <td>${log.log_msg}</td>
                                     </tr>
                                 </c:forEach>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- Content Row -->
-                <div class="row">
-
-                </div>
-
-                <!-- Content Row -->
-
-                <div class="row">
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
+            <!-- /.container-fluid -->
 
-            <!-- Footer -->
-            <%@ include file="footer.jsp"%>
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <%@ include file="footer.jsp"%>
+
 </body>
-</html>
 </html>
