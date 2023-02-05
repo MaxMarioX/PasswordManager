@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 
@@ -22,6 +23,14 @@
 </head>
 
 <body id="page-top">
+
+<c:if test="${not empty Message}">
+    <script>
+        window.addEventListener("load", function() {
+            alert("${Message}")
+        })
+    </script>
+</c:if>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -121,7 +130,7 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="/account/edit">
+                            <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
@@ -152,6 +161,46 @@
                     <h1 class="h3 mb-0 text-gray-800">PasswordManager</h1>
                 </div>
 
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Profile data</h6>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="/account/edit">
+                            <input type="hidden" name="id" value=""/>
+                            <div class="form-group">
+                                <label for="accountID">Account ID</label>
+                                <input disabled value="<c:out value="${account.account_number}"/>" name="accountID" type="text" class="form-control" id="accountID" placeholder="Account ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="accountName">Name</label>
+                                <input value="<c:out value="${account.account_name}"/>" name="accountName" type="text" class="form-control" id="accountName" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="accountSurname">Surname</label>
+                                <input value="<c:out value="${account.account_surname}"/>" name="accountSurname" type="text" class="form-control" id="accountSurname" placeholder="Surname">
+                            </div>
+                            <div class="form-group">
+                                <label for="accountEmail">Email</label>
+                                <input value="<c:out value="${account.account_email}"/>" name="accountEmail" type="text" class="form-control" id="accountEmail" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="accountPhone">Phone</label>
+                                <input value="<c:out value="${account.account_phone}"/>" name="accountPhone" type="text" class="form-control" id="accountPhone" placeholder="Phone">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="checkbox" name="accountStrongAuth" id="accountStrongAuth" <c:if test="${account.account_strong_auth==true}">checked=checked</c:if>>
+                                    </div>
+                                </div>
+                                <label type="text" class="form-control">Strong authentication</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+                </div>
+
                 <!-- Content Row -->
                 <div class="row">
 
@@ -161,19 +210,18 @@
 
                 <div class="row">
 
-                <!-- Content Row -->
-                <div class="row">
+                    <!-- Content Row -->
+                    <div class="row">
+
+                    </div>
 
                 </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+            <!-- End of Main Content -->
 
-        </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <%@ include file="footer.jsp"%>
+            <!-- Footer -->
+            <%@ include file="footer.jsp"%>
 </body>
-</html>
 </html>

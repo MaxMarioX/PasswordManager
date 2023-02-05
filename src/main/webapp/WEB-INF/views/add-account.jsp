@@ -8,7 +8,7 @@
 <body>
 <p>Add new account</p>
 <%--@elvariable id="account" type="org.pm.entity.Account"--%>
-<form:form method="post" action="/test/account/add" modelAttribute="account">
+<form:form method="post" action="account/add" modelAttribute="account">
     <div>
         Account number: <form:input path="account_number"/><form:errors path="account_number"/>
     </div>
