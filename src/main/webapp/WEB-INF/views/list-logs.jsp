@@ -74,7 +74,7 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <!--<h6 class="collapse-header">Login Screens:</h6>-->
-                    <a class="collapse-item" href="#">Show data</a>
+                    <a class="collapse-item" href="/site/listById">Show data</a>
                 </div>
             </div>
         </li>
@@ -155,7 +155,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
                                     <th>Lp</th>
                                     <th>Data</th>

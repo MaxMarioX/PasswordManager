@@ -83,7 +83,7 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <!--<h6 class="collapse-header">Login Screens:</h6>-->
-                    <a class="collapse-item" href="#">Show data</a>
+                    <a class="collapse-item" href="/site/listById">Show data</a>
                 </div>
             </div>
         </li>

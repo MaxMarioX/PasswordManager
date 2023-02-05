@@ -10,43 +10,60 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
-@RequestMapping("/test/site")
+@RequestMapping("/site")
 public class SiteFromController {
 
     private final SiteDao siteDao;
 
-    private final AccountDao accountDao;
+    private HttpSession httpSession;
 
-    public SiteFromController(SiteDao siteDao, AccountDao accountDao)
+    public SiteFromController(SiteDao siteDao)
     {
         this.siteDao = siteDao;
-        this.accountDao = accountDao;
     }
 
     @GetMapping("/add")
-    public String siteAdd(Model model)
+    public String siteAdd(HttpServletRequest httpServletRequest, Model model)
     {
+        this.httpSession = httpServletRequest.getSession();
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+
         model.addAttribute("site", new Site());
+        model.addAttribute("account", account);
+
         return "add-site";
     }
 
     @PostMapping("/add")
-    public String siteAddNow(Site site)
+    public String siteAddNow(HttpServletRequest httpServletRequest, Site site)
     {
+        this.httpSession = httpServletRequest.getSession();
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+
         site.setSite_date(LocalDate.now().toString());
-        site.setAccount(accountDao.findById(1L));
+        site.setAccount(account);
+
         siteDao.save(site);
 
-        return "ok";
+        return "redirect:/site/listById";
     }
 
-    @GetMapping("/listAll")
-    public String siteList(Model model)
+    @GetMapping("/listById")
+    public String site(HttpServletRequest httpServletRequest, Model model)
     {
-        model.addAttribute("sites", siteDao.findSitesWithAccount(accountDao.findById(1L)));
+        this.httpSession = httpServletRequest.getSession();
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+
+        List<Site> siteList = siteDao.findSitesWithAccount(account);
+
+        model.addAttribute("sites", siteList);
+        model.addAttribute("account", account);
 
         return "list-sites";
     }
