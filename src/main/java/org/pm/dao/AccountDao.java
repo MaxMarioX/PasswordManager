@@ -1,10 +1,12 @@
 package org.pm.dao;
 
+import org.hibernate.ObjectNotFoundException;
 import org.pm.entity.Account;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class AccountDao {
         return em.find(Account.class, id);
     }
 
-    public Account findByNumber(Long number)
+    public Account findByNumber(Long number) throws NoResultException
     {
         return (Account) em.createQuery("SELECT x from Account x where x.account_number = :number")
                 .setParameter("number",number)

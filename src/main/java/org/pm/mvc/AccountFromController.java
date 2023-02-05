@@ -1,7 +1,9 @@
 package org.pm.mvc;
 
 import org.pm.dao.AccountDao;
+import org.pm.dao.LogDao;
 import org.pm.entity.Account;
+import org.pm.entity.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -12,18 +14,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/account")
 public class AccountFromController {
 
-    HttpSession httpSession;
+    private HttpSession httpSession;
 
     private final AccountDao accountDao;
 
-    public AccountFromController(AccountDao accountDao)
+    private final LogDao logDao;
+
+    public AccountFromController(AccountDao accountDao, LogDao logDao)
     {
         this.accountDao = accountDao;
+        this.logDao = logDao;
     }
 
     @GetMapping("/listAll")
@@ -65,6 +71,7 @@ public class AccountFromController {
     public String accountEditNow(HttpServletRequest httpServletRequest, Model model)
     {
         Account account = (Account) httpSession.getAttribute("LoggedUser");
+        Log log = new Log();
 
         account.setAccount_name(httpServletRequest.getParameter("accountName"));
         account.setAccount_surname(httpServletRequest.getParameter("accountSurname"));
@@ -82,6 +89,12 @@ public class AccountFromController {
         httpSession.setAttribute("LoggedUser",account);
 
         accountDao.update(account);
+
+        log.setLog_msg("Profile data has been changed!");
+        log.setLog_date(LocalDate.now().toString());
+        log.setAccount(account);
+
+        logDao.save(log);
 
         model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
         model.addAttribute("Message","Profile has been updated!");
@@ -102,6 +115,7 @@ public class AccountFromController {
     public String accountEditPasswordNow(HttpServletRequest httpServletRequest, Model model)
     {
         Account account = (Account) httpSession.getAttribute("LoggedUser");
+        Log log = new Log();
 
         String password = httpServletRequest.getParameter("accountPassword");
         String password_r = httpServletRequest.getParameter("accountPasswordR");
@@ -115,6 +129,13 @@ public class AccountFromController {
                 model.addAttribute("Message","Password has been changed!");
 
                 accountDao.update(account);
+
+                log.setLog_msg("Password has been changed!");
+                log.setLog_date(LocalDate.now().toString());
+                log.setAccount(account);
+
+                logDao.save(log);
+
             } else {
                 model.addAttribute("Message","Error: Passwords are different!");
             }

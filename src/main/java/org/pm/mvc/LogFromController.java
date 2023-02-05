@@ -11,34 +11,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.Date;
 
 @Controller
-@RequestMapping("test/log")
+@RequestMapping("log")
 public class LogFromController {
 
     private final LogDao logDao;
     private final AccountDao accountDao;
 
+    private HttpSession httpSession;
+
     public LogFromController(LogDao logDao, AccountDao accountDao)
     {
         this.logDao = logDao;
         this.accountDao = accountDao;
-    }
-
-    @GetMapping("/add")
-    public String logAdd(Log log, Account account, @RequestParam String message)
-    {
-        account = accountDao.findById(2L);
-
-        log.setLog_msg(message);
-        log.setLog_date(LocalDate.now().toString());
-        log.setAccount(account);
-
-        logDao.save(log);
-
-        return "ok";
     }
 
     @GetMapping("/listAll")
@@ -50,11 +40,13 @@ public class LogFromController {
     }
 
     @GetMapping("/listById")
-    public String logListById(Model model, Account account)
+    public String logListById(HttpServletRequest httpServletRequest, Model model)
     {
-        account = accountDao.findById(1L);
+        this.httpSession = httpServletRequest.getSession();
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
 
         model.addAttribute("logs",logDao.findLogsWithAccount(account));
+        model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
 
         return "list-logs";
     }

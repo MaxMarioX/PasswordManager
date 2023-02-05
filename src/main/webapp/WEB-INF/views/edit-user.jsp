@@ -130,7 +130,7 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="/account/edit">
+                            <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
@@ -138,7 +138,7 @@
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Change password
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="/log/listById">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Event viewer
                             </a>
@@ -157,9 +157,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">PasswordManager</h1>
-                </div>
+                <%@ include file="heading.jsp"%>
 
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">

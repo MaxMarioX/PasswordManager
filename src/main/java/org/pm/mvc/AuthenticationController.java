@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,8 @@ public class AuthenticationController {
 
     private final AccountDao accountDao;
     private final LogDao logDao;
+
+    private Log log;
 
     public AuthenticationController(AccountDao accountDao, LogDao logDao)
     {
@@ -34,30 +37,46 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public String LogInCheck(HttpServletRequest request, HttpServletResponse response)
+    public String LogInCheck(HttpServletRequest request)
     {
         String accountID = request.getParameter("accountID");
         String password = request.getParameter("password");
 
-        Log log = new Log();
+        HttpSession httpSession = request.getSession();
+        Account account;
+
+        log = new Log();
         log.setLog_date(LocalDate.now().toString());
 
-        if(LogInLock(accountID)) {
-            if (LogInAuth(accountID, password)) {
-                log.setLog_msg("Logowanie do konta ["+ accountID +"] - SUKCES");
+        if(LogInCheckAccount(accountID)) {
+            if (LogInLock(accountID)) {
 
-                HttpSession httpSession = request.getSession();
-                httpSession.setAttribute("LoggedUser",accountDao.findByNumber(Long.parseLong(accountID)));
+                account = accountDao.findByNumber(Long.parseLong(accountID));
 
-                return "redirect:/dashboard/main";
+                if (LogInAuth(accountID, password)) {
 
+                    httpSession.setAttribute("LoggedUser", account);
+                    log.setAccount(account);
+                    log.setLog_msg("Successfully logged in");
+
+                    logDao.save(log);
+
+                    return "redirect:/dashboard/main";
+
+                } else {
+                    request.setAttribute("Message", "The entered ID or password is incorrect!");
+                    log.setLog_msg("Log in - wrong password");
+                    log.setAccount(account);
+                }
             } else {
-                request.setAttribute("Message", "Podane ID lub hasło jest nieprawidłowe!");
-                log.setLog_msg("Logowanie do konta ["+ accountID +"] - BŁĘDNY LOGIN LUB HASŁO");
+                request.setAttribute("Message", "The account has been blocked!");
+                log.setLog_msg("Log in - The account has been blocked");
+
+                account = accountDao.findByNumber(Long.parseLong(accountID));
+                log.setAccount(account);
             }
         } else {
-            request.setAttribute("Message", "Konto zablokowane!");
-            log.setLog_msg("Logowanie do konta ["+ accountID +"] - KONTO ZABLOKOWANWE");
+            request.setAttribute("Message", "The entered ID or password is incorrect!");
         }
 
         logDao.save(log);
@@ -68,6 +87,29 @@ public class AuthenticationController {
     private boolean hashPassword(String password, String hpassword)
     {
         return BCrypt.checkpw(password, hpassword);
+    }
+
+    private boolean LogInCheckAccount(String accountID)
+    {
+        boolean status = false;
+
+        try {
+            Account account = accountDao.findByNumber(Long.parseLong(accountID));
+
+            if(account != null)
+            {
+                status = true;
+            }
+        } catch (NoResultException e)
+        {
+            log = new Log();
+
+            log.setLog_date(LocalDate.now().toString());
+            log.setLog_msg("Log in - " + e.getMessage() + " ID Account: [" + accountID + "]");
+
+            logDao.save(log);
+        }
+        return status;
     }
 
     private boolean LogInLock(String accountID)

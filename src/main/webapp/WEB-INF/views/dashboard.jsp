@@ -129,7 +129,7 @@
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Change password
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="/log/listById">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Event viewer
                             </a>
@@ -148,9 +148,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">PasswordManager</h1>
-                </div>
+                <%@ include file="heading.jsp"%>
 
                 <!-- Content Row -->
                 <div class="row">
