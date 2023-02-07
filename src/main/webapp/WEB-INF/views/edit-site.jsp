@@ -130,11 +130,11 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                  aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="/account/edit">
+              <a class="dropdown-item" href="#">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                 Profile
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="/account/editpassword">
                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                 Change password
               </a>
@@ -161,21 +161,29 @@
 
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Change your password</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Edit site data</h6>
           </div>
           <div class="card-body">
-            <form method="post" action="/account/editpassword">
-              <input type="hidden" name="id" value=""/>
+              <form:form method="post" action="/site/edit" modelAttribute="site">
+              <form:input type="hidden" path="site_id" name="siteId" value=""/>
               <div class="form-group">
-                <label for="accountPassword">New password</label>
-                <input value="" name="accountPassword" type="password" class="form-control" id="accountPassword" placeholder="***">
+                <label for="siteName">Name</label>
+                <form:input path="site_name" id="siteName" cssClass="form-control"/><form:errors path="site_name"/>
               </div>
               <div class="form-group">
-                <label for="accountPasswordR">Repeat new password</label>
-                <input value="" name="accountPasswordR" type="password" class="form-control" id="accountPasswordR" placeholder="***">
+                <label for="siteAddress">Address</label>
+                <form:input path="site_address" id="siteAddress" cssClass="form-control"/><form:errors path="site_address"/>
+              </div>
+              <div class="form-group">
+                <label for="siteLogin">Login</label>
+                <form:input path="site_login" id="siteLogin" cssClass="form-control"/><form:errors path="site_login"/>
+              </div>
+              <div class="form-group">
+                <label for="sitePassword">Password</label>
+                <form:input path="site_password" id="sitePassword" cssClass="form-control"/><form:errors path="site_password"/>
               </div>
               <button type="submit" class="btn btn-primary">Save</button>
-            </form>
+            </form:form>
           </div>
         </div>
 

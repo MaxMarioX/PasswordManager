@@ -1,6 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
   <meta charset="utf-8">
@@ -13,12 +14,13 @@
 
   <!-- Custom fonts for this template-->
   <link href="<c:url value="/theme/vendor/fontawesome-free/css/all.min.css"/>" rel="stylesheet" type="text/css">
-  <link
-          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
+  <link href="<c:url value="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="<c:url value="/theme/css/sb-admin-2.min.css"/>" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="<c:url value="/theme/vendor/datatables/dataTables.bootstrap4.min.css"/>" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -29,6 +31,9 @@
   <!-- Sidebar -->
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <%@ include file="header.jsp"%>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -107,10 +112,6 @@
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
 
-          <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-
-          <div class="topbar-divider d-none d-sm-block"></div>
-
           <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -134,13 +135,15 @@
                 Event viewer
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+              <a class="dropdown-item" href="/dashboard/logout" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Log out
               </a>
             </div>
           </li>
+
         </ul>
+
       </nav>
       <!-- End of Topbar -->
 
@@ -153,6 +156,7 @@
           <a href="/site/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i> Add new site</a>
         </div>
+        <!-- DataTales Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">List of sites</h6>
@@ -160,13 +164,27 @@
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
                 <tr>
                   <th>Lp</th>
                   <th>Name</th>
                   <th>Address</th>
                   <th>Login</th>
                   <th>Password</th>
+                  <th>Operations</th>
                 </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                  <th>Lp</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Login</th>
+                  <th>Password</th>
+                  <th>Operations</th>
+                </tr>
+                </tfoot>
+                <tbody>
                 <%
                   Integer counter = (Integer) application.getAttribute("hitCounter");
                   counter = 0;
@@ -183,37 +201,25 @@
                     <td>${site.site_login}</td>
                     <td>${site.site_password}</td>
                     <td>
-                      <a href='#'>delete</a>
-                      <a href='#'>edit</a>
+                      <a href='/site/remove/${site.site_id}'>delete</a>
+                      <a href='/site/edit/${site.site_id}'>edit</a>
                     </td>
                   </tr>
                 </c:forEach>
+                </tbody>
               </table>
             </div>
           </div>
         </div>
 
-        <!-- Content Row -->
-        <div class="row">
-
-        </div>
-
-        <!-- Content Row -->
-
-        <div class="row">
-
-          <!-- Content Row -->
-          <div class="row">
-
-          </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
       </div>
-      <!-- End of Main Content -->
+      <!-- /.container-fluid -->
 
-      <!-- Footer -->
-      <%@ include file="footer.jsp"%>
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <%@ include file="footer.jsp"%>
+
 </body>
 </html>

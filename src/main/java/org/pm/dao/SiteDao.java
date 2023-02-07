@@ -38,4 +38,13 @@ public class SiteDao {
                 .getResultList();
     }
 
+    public Site findSiteById(Long Id)
+    {
+        return (Site) em
+                .createQuery("select x from Site x where x.id=:site_id")
+                .setParameter("site_id",Id)
+                .getSingleResult();
+
+    }
+
 }
