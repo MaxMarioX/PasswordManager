@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,9 +34,13 @@ public class AccountFromController {
     }
 
     @GetMapping("/listAll")
-    public String accountViewAll(Model model)
+    public String accountViewAll(HttpServletRequest httpServletRequest, Model model)
     {
+        this.httpSession = httpServletRequest.getSession();
+
+        model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
         model.addAttribute("accounts",accountDao.findAll());
+
         return "list-accounts";
     }
 
@@ -65,6 +70,20 @@ public class AccountFromController {
         model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
 
         return "edit-user";
+    }
+
+    @GetMapping("/editAdm/{accountNumber}")
+    public String accountEditAdm(HttpServletRequest httpServletRequest, Model model, @PathVariable("accountNumber") Long accountNumber)
+    {
+        this.httpSession = httpServletRequest.getSession();
+
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+        Account accountEdit = accountDao.findByNumber(accountNumber);
+
+        model.addAttribute("account", account);
+        model.addAttribute("accountEdit", accountEdit);
+
+        return "edit-user-adm";
     }
 
     @PostMapping("/edit")
@@ -101,6 +120,31 @@ public class AccountFromController {
 
         return "edit-user";
     }
+
+    @PostMapping("/editAdmNow")
+    public String accountEditAdmNow(HttpServletRequest httpServletRequest, Model model, Account accountEdit)
+    {
+        this.httpSession = httpServletRequest.getSession();
+
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+
+        Account accountToUpdate = accountDao.findById(accountEdit.getAccount_id());
+        accountToUpdate.setAccount_number(accountEdit.getAccount_number());
+        accountToUpdate.setAccount_name(accountEdit.getAccount_name());
+        accountToUpdate.setAccount_surname(accountEdit.getAccount_surname());
+        accountToUpdate.setAccount_email(accountEdit.getAccount_email());
+        accountToUpdate.setAccount_phone(accountEdit.getAccount_phone());
+        accountToUpdate.setAccount_password_blk(accountEdit.getAccount_password_blk());
+        accountToUpdate.setAccount_strong_auth(accountEdit.getAccount_strong_auth());
+
+        accountDao.update(accountToUpdate);
+
+        model.addAttribute("account", account);
+        model.addAttribute("Message", "User " + accountEdit.getAccount_number() + "has been updated!");
+
+        return "redirect:/account/listAll";
+    }
+
     @GetMapping("/editpassword")
     public String accountEditPassword(HttpServletRequest httpServletRequest, Model model)
     {

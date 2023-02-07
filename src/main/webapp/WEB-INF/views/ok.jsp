@@ -1,13 +1,11 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false"%>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<p>OK</p>
 
-
-</body>
-</html>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="checkbox" name="accountStrongAuth" id="accountStrongAuth" <c:if test="${account.account_strong_auth==true}">checked=checked</c:if>>
+            </div>
+        </div>
+        <label type="text" class="form-control">Strong authentication</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

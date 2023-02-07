@@ -58,9 +58,9 @@
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <!--<h6 class="collapse-header">Components:</h6>-->
-          <a class="collapse-item" href="#">User accounts</a>
+          <a class="collapse-item" href="/account/listAll">User accounts</a>
           <a class="collapse-item" href="#">Permissions</a>
-          <a class="collapse-item" href="/log/listById">Event log</a>
+          <a class="collapse-item" href="/log/listAll">Event log</a>
         </div>
       </div>
     </li>
