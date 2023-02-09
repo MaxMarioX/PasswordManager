@@ -32,11 +32,27 @@ public class LogFromController {
     }
 
     @GetMapping("/listAll")
-    public String logListAll(Model model)
+    public String logListAll(HttpServletRequest httpServletRequest, Model model)
     {
+        this.httpSession = httpServletRequest.getSession();
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+
         model.addAttribute("logs",logDao.findAll());
+        model.addAttribute("account", account);
 
         return "list-logs";
+    }
+
+    @GetMapping("/listAllAdm")
+    public String logListAdmAll(HttpServletRequest httpServletRequest, Model model)
+    {
+        this.httpSession = httpServletRequest.getSession();
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+
+        model.addAttribute("logs", logDao.findAllAdm());
+        model.addAttribute("account", account);
+
+        return "list-logs-adm";
     }
 
     @GetMapping("/listById")
@@ -46,7 +62,7 @@ public class LogFromController {
         Account account = (Account) httpSession.getAttribute("LoggedUser");
 
         model.addAttribute("logs",logDao.findLogsWithAccount(account));
-        model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
+        model.addAttribute("account", account);
 
         return "list-logs";
     }

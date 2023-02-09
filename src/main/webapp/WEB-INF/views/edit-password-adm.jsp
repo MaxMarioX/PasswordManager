@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 
@@ -135,7 +134,7 @@
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                 Profile
               </a>
-              <a class="dropdown-item" href="/account/editpassword">
+              <a class="dropdown-item" href="#">
                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                 Change password
               </a>
@@ -144,7 +143,7 @@
                 Event viewer
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/dashboard/logout" data-toggle="modal" data-target="#logoutModal">
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Log out
               </a>
@@ -162,49 +161,24 @@
 
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Profile data</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Change password</h6>
           </div>
           <div class="card-body">
-            <form:form method="post" action="/account/editAdmNow" modelAttribute="accountEdit">
-              <input:input path="account_id" type="hidden" name="id" value="${accountEdit.account_id}"/>
+            <form method="post" action="/account/editpasswordAdm">
               <div class="form-group">
-                <label for="accountNumber">ID</label>
-                <form:input path="account_number" id="accountNumber" value="${accountEdit.account_number}" cssClass="form-control" /><form:errors path="account_number"/>
-              </div>
-              <div class="form-group">
-                <label for="accountName">Name</label>
-                <form:input path="account_name" id="accountName" cssClass="form-control" value="${accountEdit.account_name}"/><form:errors path="account_name"/>
+                <label for="accountID">Account ID</label>
+                <input disabled value="<c:out value="${accountNumber}"/>" name="accountID" type="text" class="form-control" id="accountID" placeholder="Account ID">
               </div>
               <div class="form-group">
-                <label for="accountSurname">Surname</label>
-                <form:input path="account_surname" id="accountSurname" cssClass="form-control" value="${accountEdit.account_surname}"/><form:errors path="account_surname"/>
+                <label for="accountPassword">New password</label>
+                <input value="" name="accountPassword" type="password" class="form-control" id="accountPassword" placeholder="***">
               </div>
               <div class="form-group">
-                <label for="siteEmail">Email</label>
-                <form:input path="account_email" id="siteEmail" cssClass="form-control" value="${accountEdit.account_email}"/><form:errors path="account_email"/>
-              </div>
-              <div class="form-group">
-                <label for="sitePhone">Phone</label>
-                <form:input path="account_phone" id="sitePhone" cssClass="form-control" value="${accountEdit.account_phone}"/><form:errors path="account_phone"/>
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <form:checkbox path="account_strong_auth" id="accountStrongAuth" value="${accountEdit.account_strong_auth}"/>
-                  </div>
-                </div>
-                <label type="text" class="form-control">Strong authentication</label>
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <form:checkbox path="account_password_blk" id="accountLock" value="${accountEdit.account_strong_auth}"/>
-                  </div>
-                </div>
-                <label type="text" class="form-control">Lock</label>
+                <label for="accountPasswordR">Repeat new password</label>
+                <input value="" name="accountPasswordR" type="password" class="form-control" id="accountPasswordR" placeholder="***">
               </div>
               <button type="submit" class="btn btn-primary">Save</button>
-            </form:form>
+            </form>
           </div>
         </div>
 

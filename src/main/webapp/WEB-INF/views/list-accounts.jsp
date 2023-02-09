@@ -56,7 +56,7 @@
                     <!--<h6 class="collapse-header">Components:</h6>-->
                     <a class="collapse-item" href="#">User accounts</a>
                     <a class="collapse-item" href="#">Permissions</a>
-                    <a class="collapse-item" href="/log/listById">Event log</a>
+                    <a class="collapse-item" href="/log/listAllAdm">Event log</a>
                 </div>
             </div>
         </li>
@@ -152,7 +152,10 @@
 
                 <!-- Page Heading -->
                 <%@ include file="heading.jsp"%>
-
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <a href="/account/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fas fa-download fa-sm text-white-50"></i> Add new account</a>
+                </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -204,7 +207,7 @@
                                         <td>${account.account_surname}</td>
                                         <td>${account.account_email}</td>
                                         <td>${account.account_phone}</td>
-                                        <td>***</td>
+                                        <td><a href='/account/editpasswordAdm/${account.account_number}' target="_blank">***</a></td>
                                         <td><input disabled type="checkbox" name="accountStrongAuth" id="accountStrongAuth" <c:if test="${account.account_strong_auth==true}">checked=checked</c:if>></td>
                                         <td><input disabled type="checkbox" name="accountStrongActive" id="accountStrongActive" <c:if test="${account.account_password_blk==true}">checked=checked</c:if>></td>
                                     </tr>

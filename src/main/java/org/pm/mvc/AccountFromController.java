@@ -59,7 +59,7 @@ public class AccountFromController {
 
         accountDao.save(account);
 
-        return "ok";
+        return "redirect:/account/listAll";
     }
 
     @GetMapping("/edit")
@@ -89,6 +89,7 @@ public class AccountFromController {
     @PostMapping("/edit")
     public String accountEditNow(HttpServletRequest httpServletRequest, Model model)
     {
+        this.httpSession = httpServletRequest.getSession();
         Account account = (Account) httpSession.getAttribute("LoggedUser");
         Log log = new Log();
 
@@ -155,9 +156,21 @@ public class AccountFromController {
         return "edit-password";
     }
 
+    @GetMapping("/editpasswordAdm/{accountNumber}")
+    public String accountEditPasswordAdm(HttpServletRequest httpServletRequest, Model model, @PathVariable("accountNumber") Long accountNumber)
+    {
+        this.httpSession = httpServletRequest.getSession();
+
+        model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
+        model.addAttribute("accountNumber", accountNumber);
+
+        return "edit-password-adm";
+    }
+
     @PostMapping("/editpassword")
     public String accountEditPasswordNow(HttpServletRequest httpServletRequest, Model model)
     {
+        this.httpSession = httpServletRequest.getSession();
         Account account = (Account) httpSession.getAttribute("LoggedUser");
         Log log = new Log();
 
@@ -190,5 +203,45 @@ public class AccountFromController {
         model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
 
         return "edit-password";
+    }
+
+    @PostMapping("/editpasswordAdm")
+    public String accountEditPasswordAdmNow(HttpServletRequest httpServletRequest, Model model)
+    {
+        this.httpSession = httpServletRequest.getSession();
+        Account account = (Account) httpSession.getAttribute("LoggedUser");
+        Log log = new Log();
+
+        String password = httpServletRequest.getParameter("accountPassword");
+        String password_r = httpServletRequest.getParameter("accountPasswordR");
+        String account_id = httpServletRequest.getParameter("accountID");
+
+        if(!(password == null) && !(password_r == null))
+        {
+            if(password.equals(password_r))
+            {
+                Account accountEdit = accountDao.findByNumber(Long.parseLong(account_id));
+                accountEdit.setAccount_password(password);
+
+                model.addAttribute("Message","Password has been changed!");
+
+                accountDao.update(accountEdit);
+
+                log.setLog_msg("Password has been changed by !" + account.getAccount_number());
+                log.setLog_date(LocalDate.now().toString());
+                log.setAccount(accountEdit);
+
+                logDao.save(log);
+
+            } else {
+                model.addAttribute("Message","Error: Passwords are different!");
+            }
+        } else {
+            model.addAttribute("Message","Error: Password field can't be empty!");
+        }
+
+        model.addAttribute("account", account);
+
+        return "edit-password-adm";
     }
 }

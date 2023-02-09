@@ -28,10 +28,17 @@ public class LogDao {
                 .getResultList();
     }
 
+    public List<Log> findAllAdm()
+    {
+        return em
+                .createQuery("select x from Log x JOIN x.account order by x.log_date desc")
+                .getResultList();
+    }
+
     public List<Log> findLogsWithAccount(Account account)
     {
         return em
-                .createQuery("select x from Log x where x.account in :account")
+                .createQuery("select x from Log x where x.account in :account order by x.log_date desc")
                 .setParameter("account",account)
                 .getResultList();
     }

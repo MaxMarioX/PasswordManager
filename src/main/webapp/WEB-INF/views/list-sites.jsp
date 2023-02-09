@@ -56,7 +56,7 @@
           <!--<h6 class="collapse-header">Components:</h6>-->
           <a class="collapse-item" href="/account/listAll">User accounts</a>
           <a class="collapse-item" href="#">Permissions</a>
-          <a class="collapse-item" href="/log/listAll">Event log</a>
+          <a class="collapse-item" href="/log/listAllAdm">Event log</a>
         </div>
       </div>
     </li>
