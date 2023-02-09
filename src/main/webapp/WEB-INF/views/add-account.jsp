@@ -159,47 +159,47 @@
                         <form:form method="post" action="/account/add" modelAttribute="account">
                             <div>
                                 <div class="form-group">
-                                    <label for="siteNumber">Number</label>
-                                    <form:input path="account_number" id="siteNumber" cssClass="form-control"/><form:errors path="account_number"/>
+                                    <label for="accountNumber">Number</label>
+                                    <form:input path="account_number" id="accountNumber" cssClass="form-control"/><form:errors path="account_number"/>
                                 </div>
                             </div>
                             <div>
                                 <div>
                                     <div class="form-group">
-                                        <label for="siteName">Name</label>
-                                        <form:input path="account_name" id="siteName" cssClass="form-control"/><form:errors path="account_name"/>
+                                        <label for="accountName">Name</label>
+                                        <form:input path="account_name" id="accountName" cssClass="form-control"/><form:errors path="account_name"/>
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div>
                                     <div class="form-group">
-                                        <label for="siteSurname">Surname</label>
-                                        <form:input path="account_surname" id="siteSurname" cssClass="form-control"/><form:errors path="account_surname"/>
+                                        <label for="accountSurname">Surname</label>
+                                        <form:input path="account_surname" id="accountSurname" cssClass="form-control"/><form:errors path="account_surname"/>
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div>
                                     <div class="form-group">
-                                        <label for="siteEmail">Email</label>
-                                        <form:input path="account_email" id="siteEmail" cssClass="form-control"/><form:errors path="account_email"/>
+                                        <label for="accountEmail">Email</label>
+                                        <form:input path="account_email" id="accountEmail" cssClass="form-control"/><form:errors path="account_email"/>
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div>
                                     <div class="form-group">
-                                        <label for="siteEmail">Phone</label>
-                                        <form:input path="account_phone" id="sitePhone" cssClass="form-control"/><form:errors path="account_phone"/>
+                                        <label for="accountPhone">Phone</label>
+                                        <form:input path="account_phone" id="accountPhone" cssClass="form-control"/><form:errors path="account_phone"/>
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div>
                                     <div class="form-group">
-                                        <label for="sitePassword">Password</label>
-                                        <form:input path="account_password" id="sitePassword" cssClass="form-control"/><form:errors path="account_password"/>
+                                        <label for="accountPassword">Password</label>
+                                        <form:input path="account_password" id="accountPassword" cssClass="form-control"/><form:errors path="account_password"/>
                                     </div>
                                 </div>
                             </div>

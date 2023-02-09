@@ -1,8 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
   <meta charset="utf-8">
@@ -15,23 +14,16 @@
 
   <!-- Custom fonts for this template-->
   <link href="<c:url value="/theme/vendor/fontawesome-free/css/all.min.css"/>" rel="stylesheet" type="text/css">
-  <link
-          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
+  <link href="<c:url value="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="<c:url value="/theme/css/sb-admin-2.min.css"/>" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="<c:url value="/theme/vendor/datatables/dataTables.bootstrap4.min.css"/>" rel="stylesheet">
 </head>
 
 <body id="page-top">
-
-<c:if test="${not empty Message}">
-  <script>
-    window.addEventListener("load", function() {
-      alert("${Message}")
-    })
-  </script>
-</c:if>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -39,6 +31,9 @@
   <!-- Sidebar -->
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <%@ include file="header.jsp"%>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -84,7 +79,7 @@
       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <!--<h6 class="collapse-header">Login Screens:</h6>-->
-          <a class="collapse-item" href="/site/listById">Show data</a>
+          <a class="collapse-item" href="#">Show data</a>
         </div>
       </div>
     </li>
@@ -117,10 +112,6 @@
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
 
-          <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-
-          <div class="topbar-divider d-none d-sm-block"></div>
-
           <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -150,7 +141,9 @@
               </a>
             </div>
           </li>
+
         </ul>
+
       </nav>
       <!-- End of Topbar -->
 
@@ -159,76 +152,71 @@
 
         <!-- Page Heading -->
         <%@ include file="heading.jsp"%>
-
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <a href="/site/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Add new site</a>
+        </div>
+        <!-- DataTales Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Profile data</h6>
+            <h6 class="m-0 font-weight-bold text-primary">List of sites</h6>
           </div>
           <div class="card-body">
-            <form:form method="post" action="/account/editAdmNow" modelAttribute="accountEdit">
-              <input:input path="account_id" type="hidden" name="id" value="${accountEdit.account_id}"/>
-              <div class="form-group">
-                <label for="accountNumber">ID</label>
-                <form:input path="account_number" id="accountNumber" value="${accountEdit.account_number}" cssClass="form-control" /><form:errors path="account_number"/>
-              </div>
-              <div class="form-group">
-                <label for="accountName">Name</label>
-                <form:input path="account_name" id="accountName" cssClass="form-control" value="${accountEdit.account_name}"/><form:errors path="account_name"/>
-              </div>
-              <div class="form-group">
-                <label for="accountSurname">Surname</label>
-                <form:input path="account_surname" id="accountSurname" cssClass="form-control" value="${accountEdit.account_surname}"/><form:errors path="account_surname"/>
-              </div>
-              <div class="form-group">
-                <label for="accountEmail">Email</label>
-                <form:input path="account_email" id="accountEmail" cssClass="form-control" value="${accountEdit.account_email}"/><form:errors path="account_email"/>
-              </div>
-              <div class="form-group">
-                <label for="accountPhone">Phone</label>
-                <form:input path="account_phone" id="accountPhone" cssClass="form-control" value="${accountEdit.account_phone}"/><form:errors path="account_phone"/>
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <form:checkbox path="account_strong_auth" id="accountStrongAuth" value="${accountEdit.account_strong_auth}"/>
-                  </div>
-                </div>
-                <label type="text" class="form-control">Strong authentication</label>
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <form:checkbox path="account_password_blk" id="accountLock" value="${accountEdit.account_strong_auth}"/>
-                  </div>
-                </div>
-                <label type="text" class="form-control">Lock</label>
-              </div>
-              <button type="submit" class="btn btn-primary">Save</button>
-            </form:form>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                  <th>Lp</th>
+                  <th>Name</th>
+                  <th>Active</th>
+                  <th>Operations</th>
+                  <th>Description</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                  <th>Lp</th>
+                  <th>Name</th>
+                  <th>Active</th>
+                  <th>Operations</th>
+                  <th>Description</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                <%
+                  Integer counter = (Integer) application.getAttribute("hitCounter");
+                  counter = 0;
+                %>
+                <c:forEach items="${roles}" var="role">
+                  <%
+                    counter++;
+                    application.setAttribute("hitCounter",counter);
+                  %>
+                  <tr>
+                    <td><%=counter%></td>
+                    <td>${role.role_name}</td>
+                    <td><input disabled type="checkbox" name="roleActive" id="roleActive" <c:if test="${role.role_active==true}">checked=checked</c:if>></td>
+                    <td>
+                          <c:if test="${role.role_id != 1 && role.role_id != 2}"><a href="#">edit</a></c:if>
+                          <c:if test="${role.role_id == 1 || role.role_id == 2}">no edit</c:if>
+                    </td>
+                    <td>${role.role_description}</td>
+                  </tr>
+                </c:forEach>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-
-        <!-- Content Row -->
-        <div class="row">
-
-        </div>
-
-        <!-- Content Row -->
-
-        <div class="row">
-
-          <!-- Content Row -->
-          <div class="row">
-
-          </div>
-
-        </div>
-        <!-- /.container-fluid -->
 
       </div>
-      <!-- End of Main Content -->
+      <!-- /.container-fluid -->
 
-      <!-- Footer -->
-      <%@ include file="footer.jsp"%>
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <%@ include file="footer.jsp"%>
+
 </body>
 </html>

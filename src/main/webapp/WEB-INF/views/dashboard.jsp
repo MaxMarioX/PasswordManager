@@ -50,7 +50,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <!--<h6 class="collapse-header">Components:</h6>-->
                     <a class="collapse-item" href="/account/listAll">User accounts</a>
-                    <a class="collapse-item" href="#">Permissions</a>
+                    <a class="collapse-item" href="/role/listAll">Permissions</a>
                     <a class="collapse-item" href="/log/listAllAdm">Event log</a>
                 </div>
             </div>

@@ -167,7 +167,7 @@
             <form method="post" action="/account/editpasswordAdm">
               <div class="form-group">
                 <label for="accountID">Account ID</label>
-                <input disabled value="<c:out value="${accountNumber}"/>" name="accountID" type="text" class="form-control" id="accountID" placeholder="Account ID">
+                <input value="<c:out value="${accountNumber}"/>" name="accountID" type="text" class="form-control" id="accountID" placeholder="Account ID">
               </div>
               <div class="form-group">
                 <label for="accountPassword">New password</label>

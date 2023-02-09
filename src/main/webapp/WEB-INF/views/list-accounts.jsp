@@ -202,12 +202,15 @@
                                     %>
                                     <tr>
                                         <td><%=counter%></td>
-                                        <td><a href='/account/editAdm/${account.account_number}' target="_blank">${account.account_number}</a></td>
+                                        <td>
+                                            <c:if test="${account.account_id == 1}">${account.account_number}</c:if>
+                                            <c:if test="${account.account_id != 1}"><a href='/account/editAdm/${account.account_number}'>${account.account_number}</a></c:if>
+                                        </td>
                                         <td>${account.account_name}</td>
                                         <td>${account.account_surname}</td>
                                         <td>${account.account_email}</td>
                                         <td>${account.account_phone}</td>
-                                        <td><a href='/account/editpasswordAdm/${account.account_number}' target="_blank">***</a></td>
+                                        <td><a href='/account/editpasswordAdm/${account.account_number}'>***</a></td>
                                         <td><input disabled type="checkbox" name="accountStrongAuth" id="accountStrongAuth" <c:if test="${account.account_strong_auth==true}">checked=checked</c:if>></td>
                                         <td><input disabled type="checkbox" name="accountStrongActive" id="accountStrongActive" <c:if test="${account.account_password_blk==true}">checked=checked</c:if>></td>
                                     </tr>

@@ -43,7 +43,7 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Log> logList;
 
-    @ManyToMany(mappedBy = "accounts")
+    @ManyToMany(mappedBy = "accounts", cascade = CascadeType.ALL)
     private List<Role> roleList;
 
     public String hashPassword(String password)
