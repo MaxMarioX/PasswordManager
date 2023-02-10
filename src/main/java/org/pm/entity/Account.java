@@ -3,7 +3,10 @@ package org.pm.entity;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "accounts")
@@ -43,8 +46,11 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Log> logList;
 
-    @ManyToMany(mappedBy = "accounts", cascade = CascadeType.ALL)
-    private List<Role> roleList;
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "accounts_roles",
+            joinColumns = @JoinColumn(name = "account_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roleList;
 
     public String hashPassword(String password)
     {
@@ -150,12 +156,12 @@ public class Account {
     {
         return logList;
     }
-    public void setRoleList(List<Role> roleList)
+
+    public void setRoleList(Set<Role> roleList)
     {
         this.roleList = roleList;
     }
-
-    public List<Role> getRoleList()
+    public Set<Role> getRoleList()
     {
         return roleList;
     }

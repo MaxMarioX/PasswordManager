@@ -2,7 +2,9 @@ package org.pm.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="roles")
@@ -21,11 +23,8 @@ public class Role {
     @Column(length = 300)
     private String role_description;
 
-    @ManyToMany
-    @JoinTable(name = "accounts_roles",
-            joinColumns = @JoinColumn(name = "account_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Account> accounts = new ArrayList<>();
+    @ManyToMany(mappedBy = "roleList")
+    private Set<Account> accounts = new HashSet<>();
 
     public void setRole_id(Long role_id) {
         this.role_id = role_id;
@@ -61,7 +60,7 @@ public class Role {
         return role_description;
     }
 
-    public void setAccounts(List<Account> accounts) { this.accounts = accounts; }
+    public void setAccounts(Set<Account> accounts) { this.accounts = accounts; }
 
-    public List<Account> getAccounts() { return accounts; }
+    public Set<Account> getAccounts() { return accounts; }
 }

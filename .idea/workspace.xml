@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f273f813-aa6d-4721-978c-0789fd7c60b3" name="Changes" comment="Done.">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/permissions.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/pm/repository/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/pm/repository/RoleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/entity/Role.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/mvc/AccountFromController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/mvc/AccountFromController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/mvc/RoleFromController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/mvc/RoleFromController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/add-account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/add-account.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/edit-password-adm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/edit-password-adm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/edit-user-adm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/edit-user-adm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/list-accounts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/list-accounts.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ok.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +21,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -125,7 +122,8 @@
       <workItem from="1675622951622" duration="9741000" />
       <workItem from="1675793870541" duration="15168000" />
       <workItem from="1675943832454" duration="8941000" />
-      <workItem from="1675962700072" duration="16934000" />
+      <workItem from="1675962700072" duration="17054000" />
+      <workItem from="1676055122754" duration="14786000" />
     </task>
     <task id="LOCAL-00001" summary="Done.">
       <created>1675117502468</created>
@@ -330,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675952767589</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Done.">
+      <created>1675982112913</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1675982112913</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

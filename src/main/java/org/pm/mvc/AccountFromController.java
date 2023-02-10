@@ -6,6 +6,8 @@ import org.pm.dao.RoleDao;
 import org.pm.entity.Account;
 import org.pm.entity.Log;
 import org.pm.entity.Role;
+import org.pm.repository.AccountRepository;
+import org.pm.repository.RoleRepository;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/account")
@@ -30,11 +35,17 @@ public class AccountFromController {
 
     private final RoleDao roleDao;
 
-    public AccountFromController(AccountDao accountDao, LogDao logDao, RoleDao roleDao)
+    private final AccountRepository accountRepository;
+
+    private final RoleRepository roleRepository;
+
+    public AccountFromController(AccountDao accountDao, LogDao logDao, RoleDao roleDao, AccountRepository accountRepository, RoleRepository roleRepository)
     {
         this.accountDao = accountDao;
         this.logDao = logDao;
         this.roleDao = roleDao;
+        this.accountRepository = accountRepository;
+        this.roleRepository = roleRepository;
     }
 
     @GetMapping("/listAll")
@@ -62,10 +73,18 @@ public class AccountFromController {
     {
         account.setAccount_password_blk(false);
         account.setAccount_strong_auth(false);
-        account.setRoleList(roleDao.findAll());
-
 
         accountDao.save(account);
+
+        Role role = roleDao.findById(2L);
+        Role createdRole = roleRepository.save(role);
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(createdRole);
+
+        account.setRoleList(roles);
+
+        accountRepository.save(account);
 
         return "redirect:/account/listAll";
     }
