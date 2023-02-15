@@ -8,19 +8,17 @@ import org.pm.entity.Log;
 import org.pm.entity.Role;
 import org.pm.repository.AccountRepository;
 import org.pm.repository.RoleRepository;
-import org.springframework.http.MediaType;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -39,13 +37,20 @@ public class AccountFromController {
 
     private final RoleRepository roleRepository;
 
-    public AccountFromController(AccountDao accountDao, LogDao logDao, RoleDao roleDao, AccountRepository accountRepository, RoleRepository roleRepository)
+    private SimpleMailMessage mailMessage;
+
+    private final JavaMailSender javaMailSender;
+
+    public AccountFromController(AccountDao accountDao, LogDao logDao, RoleDao roleDao, AccountRepository accountRepository, RoleRepository roleRepository, JavaMailSender javaMailSender)
     {
         this.accountDao = accountDao;
         this.logDao = logDao;
         this.roleDao = roleDao;
         this.accountRepository = accountRepository;
         this.roleRepository = roleRepository;
+        this.javaMailSender = javaMailSender;
+
+        this.mailMessage = new SimpleMailMessage();
     }
 
     @GetMapping("/listAll")
@@ -270,5 +275,42 @@ public class AccountFromController {
         model.addAttribute("account", account);
 
         return "edit-password-adm";
+    }
+    @GetMapping("/recover")
+    public String Recover()
+    {
+        return "recover-password";
+    }
+    @PostMapping("/recover")
+    public String RecoverNow(HttpServletRequest httpServletRequest, Model model)
+    {
+        String email_address = httpServletRequest.getParameter("email");
+
+        try {
+
+            Account account = accountDao.findByEmail(email_address);
+            String new_password = accountDao.generateNewPassword();
+
+            account.setAccount_password(new_password);
+            accountDao.update(account);
+
+            mailMessage.setFrom("pm@mp-programs.pl");
+            mailMessage.setTo(email_address);
+            mailMessage.setSubject("New password");
+            mailMessage.setText("New password is: " + new_password);
+
+            javaMailSender.send(mailMessage);
+
+            model.addAttribute("Message", "New password has been sent!");
+
+            return "recover-password";
+
+        } catch (NoResultException x)
+        {
+            model.addAttribute("Message", email_address + "There is no account with this e-mail address");
+
+        }
+
+        return "recover-password";
     }
 }

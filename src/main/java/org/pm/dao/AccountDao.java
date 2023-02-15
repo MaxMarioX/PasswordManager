@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Random;
 
 @Repository
 @Transactional
@@ -46,5 +47,28 @@ public class AccountDao {
     public List<Account> findAll()
     {
         return em.createQuery("SELECT x from Account x", Account.class).getResultList();
+    }
+
+    public Account findByEmail(String email) throws NoResultException
+    {
+        return (Account) em.createQuery("SELECT x from Account x where x.account_email = :email")
+                .setParameter("email",email)
+                .getSingleResult();
+    }
+
+    public String generateNewPassword()
+    {
+        int leftLimit = 97;
+        int rightLimit = 122;
+        int lengthString = 10;
+
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(lengthString)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return generatedString;
     }
 }

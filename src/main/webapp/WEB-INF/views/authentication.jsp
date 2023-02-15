@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <head>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +21,6 @@
         <!-- Custom styles for this template-->
         <link href="<c:url value="/theme/css/sb-admin-2.min.css"/>" rel="stylesheet">
 
-    </head>
 </head>
 <body>
 <body class="bg-gradient-primary">
@@ -86,7 +84,7 @@
                                 </form>
                                 <!--<hr>-->
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    <a class="small" href="/account/recover">Forgot Password?</a>
                                 </div>
                                 <!--
                                 <div class="text-center">
