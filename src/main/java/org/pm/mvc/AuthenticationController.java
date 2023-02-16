@@ -5,6 +5,7 @@ import org.pm.dao.AccountDao;
 import org.pm.dao.LogDao;
 import org.pm.entity.Account;
 import org.pm.entity.Log;
+import org.pm.entity.Role;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/authentication")
@@ -56,6 +59,7 @@ public class AuthenticationController {
                 if (LogInAuth(accountID, password)) {
 
                     httpSession.setAttribute("LoggedUser", account);
+
                     log.setAccount(account);
                     log.setLog_msg("Successfully logged in");
 

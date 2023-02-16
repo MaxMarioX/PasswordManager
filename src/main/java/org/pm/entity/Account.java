@@ -1,5 +1,6 @@
 package org.pm.entity;
 
+import org.hibernate.annotations.Fetch;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
@@ -46,11 +47,14 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Log> logList;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(cascade = {
+            CascadeType.MERGE, CascadeType.PERSIST},
+            fetch = FetchType.EAGER
+    )
     @JoinTable(name = "accounts_roles",
             joinColumns = @JoinColumn(name = "account_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roleList;
+    private Set<Role> roleList = new HashSet<>();
 
     public String hashPassword(String password)
     {
