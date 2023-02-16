@@ -41,30 +41,8 @@ public class DashboardController {
         this.httpSession = httpServletRequest.getSession();
 
         model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
-        model.addAttribute("admin", httpSession.getAttribute("LoggedUserAdmin"));
 
         return "dashboard";
-    }
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String showTest(HttpServletRequest httpServletRequest)
-    {
-        this.httpSession = httpServletRequest.getSession();
-
-        Account account = (Account) httpSession.getAttribute("LoggedUser");
-
-        Set<Role> roles = account.getRoleList();
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for(Iterator<Role> roleIterator = roles.iterator(); roleIterator.hasNext();)
-        {
-            Role readRole = roleIterator.next();
-            stringBuilder.append(readRole.getRole_id() + readRole.getRole_name());
-        }
-
-        return "Permission: " + stringBuilder.toString();
     }
 
     @GetMapping("/logout")

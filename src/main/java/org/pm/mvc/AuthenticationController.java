@@ -46,6 +46,7 @@ public class AuthenticationController {
         String password = request.getParameter("password");
 
         HttpSession httpSession = request.getSession();
+
         Account account;
 
         log = new Log();
@@ -65,12 +66,16 @@ public class AuthenticationController {
 
                     logDao.save(log);
 
+                    ResetNumberFailLogIn(account);
+
                     return "redirect:/dashboard/main";
 
                 } else {
-                    request.setAttribute("Message", "The entered ID or password is incorrect!");
+                    request.setAttribute("Message", "The entered ID or password is incorrect! " + httpSession.getAttribute("numberOfAttempts"));
                     log.setLog_msg("Log in - wrong password");
                     log.setAccount(account);
+
+                    SetNumberFailLogIn(account);
                 }
             } else {
                 request.setAttribute("Message", "The account has been blocked!");
@@ -148,5 +153,25 @@ public class AuthenticationController {
         }
 
         return status;
+    }
+
+    private void SetNumberFailLogIn(Account account)
+    {
+        Integer number = account.getAccount_password_t();
+        number++;
+
+        if(number >= 3)
+        {
+            account.setAccount_password_blk(true);
+        } else {
+            account.setAccount_password_t(number);
+            accountDao.update(account);
+        }
+    }
+
+    private void ResetNumberFailLogIn(Account account)
+    {
+        account.setAccount_password_t(0);
+        accountDao.update(account);
     }
 }

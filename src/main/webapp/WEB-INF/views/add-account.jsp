@@ -136,7 +136,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Add new account</h6>
                     </div>
                     <div class="card-body">
-                        <form:form method="post" action="/account/add" modelAttribute="account">
+                        <form:form method="post" action="/account/add" modelAttribute="new_account">
                             <div>
                                 <div class="form-group">
                                     <label for="accountNumber">Number</label>

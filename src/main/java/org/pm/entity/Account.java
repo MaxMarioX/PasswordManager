@@ -36,6 +36,9 @@ public class Account {
     private String account_password;
 
     @Column(nullable = false)
+    private Integer account_password_t;
+
+    @Column(nullable = false)
     private boolean account_password_blk;
 
     @Column(nullable = false)
@@ -121,6 +124,16 @@ public class Account {
 
     public String getAccount_password() {
         return account_password;
+    }
+
+    public void setAccount_password_t(Integer account_password_t)
+    {
+        this.account_password_t = account_password_t;
+    }
+
+    public Integer getAccount_password_t()
+    {
+        return account_password_t;
     }
 
     public void setAccount_password_blk(Boolean account_password_blk) {

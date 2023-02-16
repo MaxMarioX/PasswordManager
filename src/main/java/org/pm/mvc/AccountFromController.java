@@ -66,21 +66,25 @@ public class AccountFromController {
     }
 
     @GetMapping("/add")
-    public String accountAdd(Model model)
+    public String accountAdd(HttpServletRequest httpServletRequest, Model model)
     {
-        model.addAttribute("account", new Account());
+        this.httpSession = httpServletRequest.getSession();
+
+        model.addAttribute("account", httpSession.getAttribute("LoggedUser"));
+        model.addAttribute("new_account", new Account());
         model.addAttribute("roles", roleDao.findAll());
 
         return "add-account";
     }
 
     @PostMapping("/add")
-    public String accountAddNow(Account account)
+    public String accountAddNow(Account new_account)
     {
-        account.setAccount_password_blk(false);
-        account.setAccount_strong_auth(false);
+        new_account.setAccount_password_blk(false);
+        new_account.setAccount_strong_auth(false);
+        new_account.setAccount_password_t(0);
 
-        accountDao.save(account);
+        accountDao.save(new_account);
 
         Role role = roleDao.findById(2L);
         Role createdRole = roleRepository.save(role);
@@ -88,9 +92,9 @@ public class AccountFromController {
         Set<Role> roles = new HashSet<>();
         roles.add(createdRole);
 
-        account.setRoleList(roles);
+        new_account.setRoleList(roles);
 
-        accountRepository.save(account);
+        accountRepository.save(new_account);
 
         return "redirect:/account/listAll";
     }
