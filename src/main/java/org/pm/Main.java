@@ -13,9 +13,4 @@ public class Main {
 
         SpringApplication.run(Main.class, args);
     }
-
-    public String hashPassword(String password)
-    {
-        return BCrypt.hashpw(password,BCrypt.gensalt());
-    }
 }

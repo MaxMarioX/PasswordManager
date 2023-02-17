@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f273f813-aa6d-4721-978c-0789fd7c60b3" name="Changes" comment="Done.">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/entity/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/mvc/AccountFromController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/mvc/AccountFromController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/mvc/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/mvc/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/pm/mvc/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pm/mvc/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/add-account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/add-account.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/theme/css/sb-admin-2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/theme/css/sb-admin-2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/theme/css/sb-admin-2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/theme/css/sb-admin-2.min.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -48,32 +49,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/OneDrive/Aplikacje zlecenia/PasswordManager/PasswordManager/src/main/webapp&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;1063dbeea6b803c6397c0cbd345c7a07&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/OneDrive/Aplikacje zlecenia/PasswordManager/PasswordManager/src/main/webapp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "1063dbeea6b803c6397c0cbd345c7a07",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\OneDrive\Aplikacje zlecenia\PasswordManager\PasswordManager\src\main\webapp\WEB-INF\views" />
@@ -128,7 +130,9 @@
       <workItem from="1676318722018" duration="11220000" />
       <workItem from="1676467396681" duration="8845000" />
       <workItem from="1676492003790" duration="7335000" />
-      <workItem from="1676549456464" duration="15040000" />
+      <workItem from="1676549456464" duration="16060000" />
+      <workItem from="1676622694166" duration="477000" />
+      <workItem from="1676663132352" duration="5277000" />
     </task>
     <task id="LOCAL-00001" summary="Done.">
       <created>1675117502468</created>
@@ -368,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676563665103</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Done.">
+      <created>1676568438018</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1676568438018</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

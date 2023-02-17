@@ -22,7 +22,6 @@ public class DashboardController {
 
     private HttpSession httpSession;
     private final RoleRepository roleRepository;
-
     private final RoleDao roleDao;
     private final AccountRepository accountRepository;
 
