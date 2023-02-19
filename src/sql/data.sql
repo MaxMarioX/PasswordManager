@@ -180,7 +180,7 @@ CREATE TABLE `sites` (
 
 LOCK TABLES `sites` WRITE;
 /*!40000 ALTER TABLE `sites` DISABLE KEYS */;
-INSERT INTO `sites` VALUES (23,'https://login.poczta.home.pl/','2023-02-16','mariusz.plaskota','Poczta e-mail','O44fcMbtkXV9ZtffdzdlhA==',13),(28,'https://login.poczta.home.pl/','2023-02-17','mariusz.plaskota','Poczta e-mail','7dsel6nnVEfSNVROaCqWY54RzA0h+aBT',1);
+INSERT INTO `sites` VALUES (23,'https://login.poczta.home.pl/','2023-02-16','mariusz.plaskota','Poczta e-mail','',13),(28,'https://login.poczta.home.pl/','2023-02-17','mariusz.plaskota','Poczta e-mail','7dsel6nnVEfSNVROaCqWY54RzA0h+aBT',1);
 /*!40000 ALTER TABLE `sites` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
